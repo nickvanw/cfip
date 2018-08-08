@@ -16,15 +16,9 @@ func FetchIP() (string, error) {
 		return "", err
 	}
 	defer resp.Body.Close()
-	if err != nil {
-		return "", err
-	}
 	var data IP
 	err = json.NewDecoder(resp.Body).Decode(&data)
-	if err != nil {
-		return "", err
-	}
-	return data.IP, nil
+	return data.IP, err
 }
 
 // IP has an IP
